@@ -5,7 +5,7 @@ import routesHandler from './routes/handler.js';
 import { urlencoded, json } from 'body-parser';
 
 const app = express();
-app.use(urlencoded({ extended: false }));
+app.use(urlencoded({ extended: true }));
 app.use(json());
 app.use('/', routesHandler);
 
@@ -39,3 +39,7 @@ sequelize.authenticate()
   .catch((error) => {
     console.error('Error connecting to MySQL:', error.message);
   });
+
+// Disable some properties
+
+app.disable('x-powered-by');
